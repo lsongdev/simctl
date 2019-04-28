@@ -1,0 +1,33 @@
+{
+  "name": "simctl2",
+  "version": "0.0.3",
+  "description": "iOS simulator control",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "simctl": "./bin/simctl.js"
+  },
+  "keywords": [
+    "simctl",
+    "ios",
+    "simulation"
+  ],
+  "author": "lsong",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/song940/simctl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/song940/simctl/issues"
+  },
+  "homepage": "https://github.com/song940/simctl#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  }
+}
