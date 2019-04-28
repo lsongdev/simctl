@@ -5,11 +5,17 @@ const run = promisify(exec);
 
 const simctl = {
   exec(command, ...args){
-    return run(`xcrun simctl ${command} ${args.join(' ')}`)
+    return run([ 'xcrun', 'simctl', command ].concat(args).map(JSON.stringify).join(' '))
       .then(({ stderr, stdout }) => {
         if(stderr) throw new Error(stderr);
         return stdout;
       });
+  },
+  /**
+   * open Simulator.app
+   */
+  open(){
+    return run('open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app');
   },
   /**
    * Create a new device.
@@ -19,6 +25,12 @@ const simctl = {
    */
   create(name, deviceTypeId, runtimeId) {
     return this.exec(`create`, name, deviceTypeId, runtimeId);
+  },
+  /**
+   * Delete a device or all unavailable devices.
+   */
+  delete(device = 'unavailable'){
+    return this.exec('delete', device);
   },
   /**
    * List available devices, device types, runtimes, or device pairs.

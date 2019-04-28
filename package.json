@@ -1,6 +1,6 @@
 {
   "name": "simctl2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "iOS simulator control",
   "main": "index.js",
   "directories": {
@@ -18,7 +18,7 @@
     "simulation"
   ],
   "author": "lsong",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/song940/simctl.git"
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/song940/simctl#readme",
   "dependencies": {
+    "cli-table": "^0.3.1",
     "inquirer": "^6.3.1"
   }
 }
