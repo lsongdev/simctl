@@ -15,7 +15,7 @@ const simctl = {
    * open Simulator.app
    */
   open(){
-    return run('open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app');
+    return run('open -a Simulator.app');
   },
   /**
    * Create a new device.
@@ -45,7 +45,7 @@ const simctl = {
    * @param {*} url 
    */
   openurl(device, url){
-    return this.exec('openurl', device, encodeURI(url));
+    return this.exec('openurl', device, url);
   },
   /**
    * Boot a device.

@@ -1,6 +1,6 @@
 {
   "name": "simctl2",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "iOS simulator control",
   "main": "index.js",
   "directories": {

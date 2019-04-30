@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+const path = require('path');
 const simctl = require('..');
 const Table = require('cli-table');
 const inquirer = require('inquirer');
+const pkg = require('../package')
 const program = require('../program');
 
 program()
@@ -108,6 +110,27 @@ program()
 })
 .command('openurl', async ({ _: [ url ], device = 'booted' }) => {
   return simctl.openurl(device, url);
+})
+.command('open', async ({ _, device = 'booted' }) => {
+  const [ name ] = _;
+  if(!name) return console.error(`[${pkg.name}] "name" is required`,);
+  const cwd = process.cwd();
+  const filename = path.join(cwd, `${pkg.name}.config.js`);
+  var config = {};
+  try{
+    config = require(filename);
+  }catch(e){
+    console.log(filename, 'not found.');
+  }
+  if(!(config.scripts && typeof config.scripts[name] === 'function')){
+    return console.error(`scripts[${name}] not found.`);
+  }
+  try{
+    const url = await config.scripts[name].apply(simctl, _.slice(1));
+    if(typeof url === 'string') return simctl.openurl(device, url);
+  }catch(e){
+    console.error(e);
+  }
 })
 .command('help', () => {
   console.log('simcrl [command] [options]');
